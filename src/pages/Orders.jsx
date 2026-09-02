@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getOrder } from "../services/orderApi";
 import OrderCard from "../components/OrderCard";
+import Loading from "../components/Loading";
+
 export default function Orders() {
   const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     const loadOrder = async () => {
       try {
@@ -10,16 +15,25 @@ export default function Orders() {
         setOrders(data);
       } catch (error) {
         console.log("error: ", error);
+        setError("!دریافت سفارش ها با خطا مواجه شد");
+      } finally {
+        setIsLoading(false);
       }
     };
+
     loadOrder();
   }, []);
-  console.log(orders);
-  return (
-    <div className="row">
-      {orders.map((cart) => (
-        <OrderCard cart={cart} />
-      ))}
-    </div>
-  );
+  if (error) {
+    return <p className="text-danger fw-bold fs-5 text-center my-5">{error}</p>;
+  } else {
+    return (
+      <div className="row">
+        {isLoading ? (
+          <Loading />
+        ) : (
+          orders.map((cart) => <OrderCard key={cart.id} cart={cart} />)
+        )}
+      </div>
+    );
+  }
 }
