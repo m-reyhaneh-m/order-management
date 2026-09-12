@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getOrder } from "../services/orderApi";
 import OrderCard from "../components/OrderCard";
 import Loading from "../Loading/Loading";
+import { OrderContext } from "../context/OrderContext";
 
 export default function Orders() {
-  const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const {orders , setOrders} = useContext(OrderContext)
   useEffect(() => {
     const loadOrder = async () => {
       try {

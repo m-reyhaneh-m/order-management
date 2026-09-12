@@ -13,9 +13,6 @@ export default function Navbar() {
       <Link className="nav-link" to="/orders/new">
         AddOrder
       </Link>
-      <Link className="nav-link" to="/orders/:id">
-        OrderDetails
-      </Link>
     </nav>
   );
 }
