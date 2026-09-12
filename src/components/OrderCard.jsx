@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function OrderCard({cart}) {
   return (
@@ -8,6 +9,10 @@ export default function OrderCard({cart}) {
       <p className="card-text">Total: {cart.total}</p>
       <p className="card-text">Products: {cart.totalProducts}</p>
       <p className="card-text">Quantity: {cart.totalQuantity}</p>
+        <div className="card-footer d-flex justify-content-center">
+          <Link className="btn btn-danger mx-1">Delete</Link>
+          <Link to={`/orders/${cart.id}`} className="btn btn-primary mx-1">Details</Link>
+        </div>
     </div>
   );
 }

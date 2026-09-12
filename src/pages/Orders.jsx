@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getOrder } from "../services/orderApi";
 import OrderCard from "../components/OrderCard";
-import Loading from "../components/Loading";
+import Loading from "../Loading/Loading";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -27,7 +27,7 @@ export default function Orders() {
     return <p className="text-danger fw-bold fs-5 text-center my-5">{error}</p>;
   } else {
     return (
-      <div className="row">
+      <div className="row mx-auto">
         {isLoading ? (
           <Loading />
         ) : (
