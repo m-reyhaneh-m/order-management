@@ -5,15 +5,25 @@ import LoadingDetails from "../Loading/LoadingDetails";
 
 export default function OrderDetails() {
   const [order, setOrder] = useState();
+  const [error, setError] = useState(null);
   const { id } = useParams();
   useEffect(() => {
     const loadOrder = async () => {
-      const data = await getOrderById(id);
-      setOrder(data);
+      try {
+        const data = await getOrderById(id);
+        setOrder(data);
+      } catch (error) {
+        console.log("error: ", error);
+        setError("!دریافت سفارش با خطا مواجه شد");
+      }
     };
     loadOrder();
   }, [id]);
   console.log(order);
+  if (error) {
+    return <p className="text-danger fw-bold fs-5 text-center my-5">{error}</p>;
+  }
+
   if (!order) {
     return <LoadingDetails />;
   }
@@ -27,11 +37,11 @@ export default function OrderDetails() {
       <p>Total Products: {order.totalProducts}</p>
       <p>Total Quantity: {order.totalQuantity}</p>
       <h2>Products</h2>
-      {order.products.map((product)=>(
+      {order.products.map((product) => (
         <div key={product.id}>
-            <p>Product: {product.title}</p>
-            <p>Price: ${product.price}</p>
-            <p>Quantity: {product.quantity}</p>
+          <p>Product: {product.title}</p>
+          <p>Price: ${product.price}</p>
+          <p>Quantity: {product.quantity}</p>
         </div>
       ))}
     </div>
