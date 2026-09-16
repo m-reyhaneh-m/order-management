@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { OrderContext } from "../context/OrderContext";
 import OrderCard from "../components/OrderCard";
 export default function Dashboard() {
@@ -13,7 +13,7 @@ export default function Dashboard() {
     (sum, order) => sum + order.totalQuantity,
     0,
   );
-  const resetOrders = orders.slice(-5).reverse();
+  const recentOrder = orders.slice(-5).reverse();
   if (error) {
     return <p className="text-danger fw-bold fs-5 text-center my-5">{error}</p>;
   }
@@ -53,7 +53,7 @@ export default function Dashboard() {
       </div>
       <h2>Recent Orders</h2>
       <div className="row">
-        {resetOrders.map((cart) => (
+        {recentOrder.map((cart) => (
           <OrderCard key={cart.id} cart={cart} />
         ))}
       </div>

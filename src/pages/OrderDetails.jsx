@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOrderById } from "../services/orderApi";
 import LoadingDetails from "../Loading/LoadingDetails";
@@ -26,7 +26,6 @@ export default function OrderDetails() {
     };
     loadOrder();
   }, [id, orders]);
-  console.log(order);
   if (error) {
     return <p className="text-danger fw-bold fs-5 text-center my-5">{error}</p>;
   }

@@ -39,7 +39,6 @@ export default function AddOrder() {
       setTimeout(() => setSuccess(false), 2000);
       reset();
     } catch (error) {
-      setError("Failed to add order.");
       console.log("Error adding order:", error);
     }
   };
