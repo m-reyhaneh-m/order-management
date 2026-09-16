@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOrderById } from "../services/orderApi";
 import LoadingDetails from "../Loading/LoadingDetails";
+import { OrderContext } from "../context/OrderContext";
 
 export default function OrderDetails() {
   const [order, setOrder] = useState();
   const [error, setError] = useState(null);
   const { id } = useParams();
+  const { orders } = useContext(OrderContext);
   useEffect(() => {
     const loadOrder = async () => {
       try {
+        const contextOrder = orders.find((order) => order.id === Number(id));
+        if (contextOrder) {
+          setOrder(contextOrder);
+          return;
+        }
         const data = await getOrderById(id);
         setOrder(data);
       } catch (error) {
@@ -18,7 +25,7 @@ export default function OrderDetails() {
       }
     };
     loadOrder();
-  }, [id]);
+  }, [id, orders]);
   console.log(order);
   if (error) {
     return <p className="text-danger fw-bold fs-5 text-center my-5">{error}</p>;
