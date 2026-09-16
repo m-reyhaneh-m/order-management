@@ -12,4 +12,7 @@ const addOrder = async (data) => {
   const response = await axios.post("https://dummyjson.com/carts/add", data);
   return response.data;
 };
-export { getOrder, getOrderById, addOrder };
+const deleteOrder = async (id) =>{
+  const response = await axios.delete(`https://dummyjson.com/carts/${id}`)
+}
+export { getOrder, getOrderById, addOrder,deleteOrder };
