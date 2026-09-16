@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { addOrder } from "../services/orderApi";
@@ -12,6 +12,7 @@ const schema = z.object({
 });
 
 export default function AddOrder() {
+  const [success, setSuccess] = useState(false);
   const { setOrders } = useContext(OrderContext);
   const {
     register,
@@ -34,8 +35,11 @@ export default function AddOrder() {
     try {
       const result = await addOrder(orderData);
       setOrders((prevOrder) => [...prevOrder, result]);
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 2000);
       reset();
     } catch (error) {
+      setError("Failed to add order.");
       console.log("Error adding order:", error);
     }
   };
@@ -81,6 +85,11 @@ export default function AddOrder() {
       <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
         {isSubmitting ? "Adding..." : "Add"}
       </button>
+      {success && (
+        <div className="alert alert-success mt-4" role="alert">
+          Order added successfully!
+        </div>
+      )}
     </form>
   );
 }
