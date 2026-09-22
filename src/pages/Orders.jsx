@@ -9,12 +9,18 @@ export default function Orders() {
     return <p className="text-danger fw-bold fs-5 text-center my-5">{error}</p>;
   }
   return (
-    <div className="row mx-auto">
-      {isLoading ? (
-        <Loading />
-      ) : (
-        orders.map((cart) => <OrderCard key={cart.id} cart={cart} />)
-      )}
+    <div className="order-page">
+      <div className="page-header">
+        <h1>Orders</h1>
+        <p>Manage all orders</p>
+      </div>
+      <div className="row">
+        {isLoading ? (
+          <Loading />
+        ) : (
+          orders.map((cart) => <OrderCard key={cart.id} cart={cart} />)
+        )}
+      </div>
     </div>
   );
 }

@@ -1,17 +1,22 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="navbar">
-      <Link className="nav-link" to="/">
+    <aside className="sidebar d-flex flex-md-column justify-content-between justify-content-md-start py-4 px-3">
+    <div className="sidebar-brand mb-md-5">
+      Order Panel
+    </div>
+      <nav className="sidebar-nav d-flex flex-md-column gap-2">
+      <NavLink className="sidebar-link rounded-2" to="/">
         Dashboard
-      </Link>
-      <Link className="nav-link" to="/orders">
+      </NavLink>
+      <NavLink className="sidebar-link rounded-2" to="/orders" end>
         Orders
-      </Link>
-      <Link className="nav-link" to="/orders/new">
+      </NavLink>
+      <NavLink className="sidebar-link rounded-2" to="/orders/new">
         AddOrder
-      </Link>
+      </NavLink>
     </nav>
+    </aside>
   );
 }

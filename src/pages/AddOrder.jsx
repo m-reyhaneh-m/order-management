@@ -44,51 +44,62 @@ export default function AddOrder() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-25 mx-auto mt-5">
-      <div className="mb-3 mt-1">
-        <label className="form-label">User ID:</label>
-        <input
-          {...register("userId", { valueAsNumber: true })}
-          className="form-control"
-          placeholder="User Id..."
-          type="number"
-        />
-        {errors.userId && (
-          <div className="text-danger">{errors.userId.message}</div>
-        )}
+    <div className="form-page">
+      <div className="form-card">
+      <div className="page-header">
+        <h1>Add order</h1>
+        <p>Create a new order</p>
       </div>
-      <div className="mb-3 mt-1">
-        <label className="form-label">Product ID:</label>
-        <input
-          {...register("productId", { valueAsNumber: true })}
-          className="form-control"
-          placeholder="Product Id..."
-          type="number"
-        />
-        {errors.productId && (
-          <div className="text-danger">{errors.productId.message}</div>
-        )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-3 mt-1">
+            <label className="form-label">User ID:</label>
+            <input
+              {...register("userId", { valueAsNumber: true })}
+              className="form-control"
+              placeholder="User Id..."
+              type="number"
+            />
+            {errors.userId && (
+              <div className="text-danger error-message">{errors.userId.message}</div>
+            )}
+          </div>
+          <div className="mb-3 mt-1">
+            <label className="form-label">Product ID:</label>
+            <input
+              {...register("productId", { valueAsNumber: true })}
+              className="form-control"
+              placeholder="Product Id..."
+              type="number"
+            />
+            {errors.productId && (
+              <div className="text-danger error-message">{errors.productId.message}</div>
+            )}
+          </div>
+          <div className="mb-3 mt-1">
+            <label className="form-label">Quantity:</label>
+            <input
+              {...register("quantity", { valueAsNumber: true })}
+              className="form-control"
+              placeholder="Quantity..."
+              type="number"
+            />
+            {errors.quantity && (
+              <div className="text-danger error-message">{errors.quantity.message}</div>
+            )}
+          </div>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isSubmitting}>
+            {isSubmitting ? "Adding..." : "Add"}
+          </button>
+          {success && (
+            <div className="alert alert-success mt-4" role="alert">
+              Order added successfully!
+            </div>
+          )}
+        </form>
       </div>
-      <div className="mb-3 mt-1">
-        <label className="form-label">Quantity:</label>
-        <input
-          {...register("quantity", { valueAsNumber: true })}
-          className="form-control"
-          placeholder="Quantity..."
-          type="number"
-        />
-        {errors.quantity && (
-          <div className="text-danger">{errors.quantity.message}</div>
-        )}
-      </div>
-      <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-        {isSubmitting ? "Adding..." : "Add"}
-      </button>
-      {success && (
-        <div className="alert alert-success mt-4" role="alert">
-          Order added successfully!
-        </div>
-      )}
-    </form>
+    </div>
   );
 }

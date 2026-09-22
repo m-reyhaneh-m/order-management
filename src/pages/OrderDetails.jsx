@@ -35,21 +35,26 @@ export default function OrderDetails() {
   }
 
   return (
-    <div>
-      <h1>Order Details</h1>
-      <p>Order ID: {order.id}</p>
-      <p>User ID: {order.userId}</p>
-      <p>Total: ${order.total}</p>
-      <p>Total Products: {order.totalProducts}</p>
-      <p>Total Quantity: {order.totalQuantity}</p>
-      <h2>Products</h2>
-      {order.products.map((product) => (
-        <div key={product.id}>
-          <p>Product: {product.title}</p>
-          <p>Price: ${product.price}</p>
-          <p>Quantity: {product.quantity}</p>
-        </div>
-      ))}
+    <div className="details-page">
+      <div className="page-header">
+        <h1>Order Details</h1>
+        <p>Information about this order</p>
+      </div>
+      <div className="details-card p-3 p-md-5 rounded-4">
+        <p>Order ID: {order.id}</p>
+        <p>User ID: {order.userId}</p>
+        <p>Total: ${order.total}</p>
+        <p>Total Products: {order.totalProducts}</p>
+        <p>Total Quantity: {order.totalQuantity}</p>
+        <h2 className="mt-5 mb-4">Products</h2>
+        {order.products.map((product) => (
+          <div key={product.id}>
+            <p>Product: {product.title}</p>
+            <p>Price: ${product.price}</p>
+            <p>Quantity: {product.quantity}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

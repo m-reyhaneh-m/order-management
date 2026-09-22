@@ -1,0 +1,257 @@
+:root {
+  /* Main Colors */
+  --primary-dark: #1e293b;
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+  --accent: #dbeafe;
+
+  /* Background */
+  --background: #f5f7fb;
+  --surface: #ffffff;
+
+  /* Text */
+  --text: #1e293b;
+  --text-light: #64748b;
+  --text-on-dark: #ffffff;
+
+  /* Border */
+  --border: #cbd5e1;
+  --border-hover: #94a3b8;
+
+  /* Shadow */
+  --shadow-sm: 0 2px 8px rgba(30, 41, 59, 0.06);
+  --shadow-md: 0 6px 20px rgba(30, 41, 59, 0.1);
+}
+
+/* General */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f7fb;
+}
+
+/* Layout */
+.app-layout {
+  display: block;
+  min-height: 100vh;
+}
+
+.main-content {
+  width: 100%;
+  margin-left: 0;
+  padding: 20px;
+  background-color: var(--background);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 100%;
+  min-height: auto;
+  background-color: var(--primary-dark);
+  color: var(--text-on-dark);
+  position: static;
+}
+
+.sidebar-brand {
+  color: var(--accent);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar-link {
+  text-decoration: none;
+  color: var(--text-on-dark);
+  padding: 12px 15px;
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+.sidebar-link:hover {
+  color: var(--accent);
+  background-color: var(--primary);
+}
+
+.sidebar-link.active {
+  background-color: var(--primary-light);
+  color: var(--accent);
+}
+
+/* Dashboard */
+.dashboard-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+}
+
+.dashboard-card h5 {
+  color: var(--text-light);
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.dashboard-card h2 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--primary-dark);
+}
+
+.section-title {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: var(--primary);
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.page-header p {
+  color: var(--text-light);
+  margin-top: 8px;
+}
+
+/* Order Card */
+.order-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
+
+.order-card p {
+  margin: 0;
+  padding: 9px 0;
+  color: var(--text);
+  font-size: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.order-card p:first-child {
+  color: var(--primary-dark);
+  font-size: 18px;
+  font-weight: 500;
+  padding-top: 0;
+  margin-bottom: 5px;
+}
+
+.order-card p:last-of-type {
+  border-bottom: none;
+}
+
+.order-card .card-footer {
+  margin-top: auto;
+  padding: 18px 0 0;
+  background: transparent;
+  border: none;
+  display: flex;
+  gap: 8px;
+}
+
+.order-card .btn {
+  flex: 1;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 9px 12px;
+  transition: all 0.2s ease;
+}
+
+/* Add Order */
+.form-page {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.form-card {
+  background-color: var(--surface);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+.form-label {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Error */
+.error-message {
+  font-weight: 600;
+  text-align: center;
+  padding: 5px;
+}
+
+/* Order Details */
+.details-card {
+  background-color: var(--surface);
+  box-shadow: var(--shadow-md);
+}
+
+.details-card h2 {
+  color: var(--primary);
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  .app-layout {
+    display: flex;
+  }
+
+  .main-content {
+    margin-left: 240px;
+    padding: 30px;
+  }
+
+  .sidebar {
+    width: 240px;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+
+  .sidebar-brand {
+    font-size: 24px;
+    margin-bottom: 0;
+  }
+
+  .sidebar-nav {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .sidebar-link {
+    flex: none;
+    text-align: left;
+    min-width: auto;
+  }
+
+  .form-card {
+    padding: 30px;
+  }
+}

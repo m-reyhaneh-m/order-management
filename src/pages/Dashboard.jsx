@@ -21,37 +21,41 @@ export default function Dashboard() {
     return <p className="mx-auto">Loading...</p>;
   }
   return (
-    <div className="container">
+    <div className="dashboard">
+      <div className="page-header">
+        <h1>Dashboard</h1>
+        <p>Overview of your orders</p>
+      </div>
       <div className="row">
-        <div className="col-md-3">
-          <div className="card p-3">
+        <div className="col-10 mx-auto col-sm-6 col-lg-3 mb-4">
+          <div className="dashboard-card">
             <h5>Total Orders</h5>
             <h2>{totalOrders}</h2>
           </div>
         </div>
 
-        <div className="col-md-3">
-          <div className="card p-3">
+        <div className="col-10 mx-auto col-sm-6 col-lg-3 mb-4">
+          <div className="dashboard-card">
             <h5>Total Sales</h5>
             <h2>${totalSales}</h2>
           </div>
         </div>
 
-        <div className="col-md-3">
-          <div className="card p-3">
+        <div className="col-10 mx-auto col-sm-6 col-lg-3 mb-4">
+          <div className="dashboard-card">
             <h5>Total Products</h5>
             <h2>{totalProducts}</h2>
           </div>
         </div>
 
-        <div className="col-md-3">
-          <div className="card p-3">
+        <div className="col-10 mx-auto col-sm-6 col-lg-3 mb-4">
+          <div className="dashboard-card">
             <h5>Total Quantity</h5>
             <h2>{totalQuantity}</h2>
           </div>
         </div>
       </div>
-      <h2>Recent Orders</h2>
+      <h2 className="section-title">Recent Orders</h2>
       <div className="row">
         {recentOrder.map((cart) => (
           <OrderCard key={cart.id} cart={cart} />
