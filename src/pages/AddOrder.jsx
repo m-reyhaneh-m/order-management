@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { addOrder } from "../services/orderApi";
@@ -13,6 +13,7 @@ const schema = z.object({
 
 export default function AddOrder() {
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
   const { setOrders } = useContext(OrderContext);
   const {
     register,
@@ -32,6 +33,7 @@ export default function AddOrder() {
         },
       ],
     };
+    setError(null);
     try {
       const result = await addOrder(orderData);
       setOrders((prevOrder) => [...prevOrder, result]);
@@ -40,16 +42,17 @@ export default function AddOrder() {
       reset();
     } catch (error) {
       console.log("Error adding order:", error);
+      setError("Failed to add order. Please try again.");
     }
   };
 
   return (
     <div className="form-page">
       <div className="form-card">
-      <div className="page-header">
-        <h1>Add order</h1>
-        <p>Create a new order</p>
-      </div>
+        <div className="page-header">
+          <h1>Add order</h1>
+          <p>Create a new order</p>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3 mt-1">
             <label className="form-label">User ID:</label>
@@ -60,7 +63,9 @@ export default function AddOrder() {
               type="number"
             />
             {errors.userId && (
-              <div className="text-danger error-message">{errors.userId.message}</div>
+              <div className="text-danger error-message">
+                {errors.userId.message}
+              </div>
             )}
           </div>
           <div className="mb-3 mt-1">
@@ -72,7 +77,9 @@ export default function AddOrder() {
               type="number"
             />
             {errors.productId && (
-              <div className="text-danger error-message">{errors.productId.message}</div>
+              <div className="text-danger error-message">
+                {errors.productId.message}
+              </div>
             )}
           </div>
           <div className="mb-3 mt-1">
@@ -84,7 +91,9 @@ export default function AddOrder() {
               type="number"
             />
             {errors.quantity && (
-              <div className="text-danger error-message">{errors.quantity.message}</div>
+              <div className="text-danger error-message">
+                {errors.quantity.message}
+              </div>
             )}
           </div>
           <button
@@ -96,6 +105,11 @@ export default function AddOrder() {
           {success && (
             <div className="alert alert-success mt-4" role="alert">
               Order added successfully!
+            </div>
+          )}
+          {error && (
+            <div className="alert alert-danger mt-4" role="alert">
+              {error}
             </div>
           )}
         </form>

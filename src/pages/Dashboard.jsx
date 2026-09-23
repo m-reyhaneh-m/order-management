@@ -4,7 +4,7 @@ import OrderCard from "../components/OrderCard";
 export default function Dashboard() {
   const { orders, isLoading, error } = useContext(OrderContext);
   const totalOrders = orders.length;
-  const totalSales = orders.reduce((sum, order) => sum + order.total, 0);
+  const totalSales = orders.reduce((sum, order) => sum + (order.total ?? 0), 0);
   const totalProducts = orders.reduce(
     (sum, order) => sum + order.totalProducts,
     0,
@@ -13,7 +13,7 @@ export default function Dashboard() {
     (sum, order) => sum + order.totalQuantity,
     0,
   );
-  const recentOrder = orders.slice(-5).reverse();
+  const recentOrders = orders.slice(-5).reverse();
   if (error) {
     return <p className="text-danger fw-bold fs-5 text-center my-5">{error}</p>;
   }
@@ -57,7 +57,7 @@ export default function Dashboard() {
       </div>
       <h2 className="section-title">Recent Orders</h2>
       <div className="row">
-        {recentOrder.map((cart) => (
+        {recentOrders.map((cart) => (
           <OrderCard key={cart.id} cart={cart} />
         ))}
       </div>

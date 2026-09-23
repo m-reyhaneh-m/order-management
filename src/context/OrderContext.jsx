@@ -7,7 +7,7 @@ function OrderProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    const loadOrder = async () => {
+    const loadOrders = async () => {
       try {
         const data = await getOrder();
         setOrders(data);
@@ -19,7 +19,7 @@ function OrderProvider({ children }) {
       }
     };
 
-    loadOrder();
+    loadOrders();
   }, []);
 
   return (

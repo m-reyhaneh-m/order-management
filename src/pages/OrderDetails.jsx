@@ -47,13 +47,20 @@ export default function OrderDetails() {
         <p>Total Products: {order.totalProducts}</p>
         <p>Total Quantity: {order.totalQuantity}</p>
         <h2 className="mt-5 mb-4">Products</h2>
-        {order.products.map((product) => (
-          <div key={product.id}>
-            <p>Product: {product.title}</p>
-            <p>Price: ${product.price}</p>
-            <p>Quantity: {product.quantity}</p>
-          </div>
-        ))}
+        <div className="row">
+          {order.products.map((product) => (
+            <div key={product.id} className="col-12 col-sm-6 col-lg-4 mb-4">
+              <div className="order-card rounded-4 p-3 d-flex">
+                <img src={product.thumbnail} className="card-img border rounded-4 w-50 my-auto" alt="image product" />
+                <div className="card-body w-50 text-center">
+                  <h5 className="card-title mb-2">{product.title}</h5>
+                  <p className="card-text">Price: ${product.price}</p>
+                  <p className="card-text">Quantity: {product.quantity}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

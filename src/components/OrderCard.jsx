@@ -1,11 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { deleteOrder } from "../services/orderApi";
 import { OrderContext } from "../context/OrderContext";
 
 export default function OrderCard({ cart }) {
   const { setOrders } = useContext(OrderContext);
+  const [error, setError] = useState(null);
   const handleDelete = async () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this order?",
+    );
+    if (!confirmed) return;
     try {
       await deleteOrder(cart.id);
       setOrders((prevOrders) =>
@@ -13,25 +18,36 @@ export default function OrderCard({ cart }) {
       );
     } catch (error) {
       console.log("Error deleting order:", error);
+      setError("Failed to delete this order.");
     }
   };
   return (
     <div className="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
       <div className="order-card h-100 rounded-4 p-4 d-flex flex-column">
-        <p className="card-text">order: {cart.id}</p>
+        <p className="card-text">Order: {cart.id}</p>
         <p className="card-text">User ID: {cart.userId}</p>
         <p className="card-text">Total: {cart.total}</p>
         <p className="card-text">Products: {cart.totalProducts}</p>
         <p className="card-text">Quantity: {cart.totalQuantity}</p>
         <div className="d-flex justify-content-between mt-3">
-          <button onClick={handleDelete} className="btn btn-outline-danger mx-1">
+          <button
+            type="button"
+            onClick={handleDelete}
+            className="btn btn-outline-danger mx-1">
             Delete
           </button>
-          <Link to={`/orders/${cart.id}`} className="btn btn-outline-primary mx-1">
+          <Link
+            to={`/orders/${cart.id}`}
+            className="btn btn-outline-primary mx-1">
             Details
           </Link>
         </div>
       </div>
+      {error && (
+        <div className="alert alert-danger mt-3 mb-0" role="alert">
+          {error}
+        </div>
+      )}
     </div>
   );
 }
