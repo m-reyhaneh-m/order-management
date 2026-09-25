@@ -4,9 +4,16 @@ import Loading from "../Loading/Loading";
 import { OrderContext } from "../context/OrderContext";
 
 export default function Orders() {
-  const { orders, isLoading, error } = useContext(OrderContext);
+  const { orders, isLoading, error, loadOrders } = useContext(OrderContext);
   if (error) {
-    return <p className="text-danger fw-bold fs-5 text-center my-5">{error}</p>;
+    return (
+      <div className="fw-bold fs-5 text-center my-5">
+        <p className="text-danger">{error}</p>
+        <button className="btn btn-outline-danger fw-bold" onClick={loadOrders} disabled={isLoading}>
+          {isLoading ? "Loading..." : "Retry"}
+        </button>
+      </div>
+    );
   }
   return (
     <div className="order-page">

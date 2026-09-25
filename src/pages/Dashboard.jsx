@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { OrderContext } from "../context/OrderContext";
 import OrderCard from "../components/OrderCard";
 export default function Dashboard() {
-  const { orders, isLoading, error } = useContext(OrderContext);
+  const { orders, isLoading, error, loadOrders } = useContext(OrderContext);
   const totalOrders = orders.length;
   const totalSales = orders.reduce((sum, order) => sum + (order.total ?? 0), 0);
   const totalProducts = orders.reduce(
@@ -15,7 +15,17 @@ export default function Dashboard() {
   );
   const recentOrders = orders.slice(-5).reverse();
   if (error) {
-    return <p className="text-danger fw-bold fs-5 text-center my-5">{error}</p>;
+    return (
+      <div className="fw-bold fs-5 text-center my-5">
+        <p className="text-danger">{error}</p>
+        <button
+          className="btn btn-outline-danger fw-bold"
+          onClick={loadOrders}
+          disabled={isLoading}>
+          {isLoading ? "Loading..." : "Retry"}
+        </button>
+      </div>
+    );
   }
   if (isLoading) {
     return <p className="mx-auto">Loading...</p>;

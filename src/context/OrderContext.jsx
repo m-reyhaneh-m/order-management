@@ -6,24 +6,25 @@ function OrderProvider({ children }) {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const loadOrders = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      const data = await getOrder();
+      setOrders(data);
+    } catch (error) {
+      console.log("error: ", error);
+      setError("Failed to load orders!");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   useEffect(() => {
-    const loadOrders = async () => {
-      try {
-        const data = await getOrder();
-        setOrders(data);
-      } catch (error) {
-        console.log("error: ", error);
-        setError("!دریافت سفارش ها با خطا مواجه شد");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     loadOrders();
   }, []);
-
   return (
-    <OrderContext.Provider value={{ orders, setOrders, isLoading, error }}>
+    <OrderContext.Provider
+      value={{ orders, setOrders, isLoading, error, loadOrders }}>
       {children}
     </OrderContext.Provider>
   );
