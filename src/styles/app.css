@@ -33,7 +33,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f5f7fb;
 }
-img{
+img {
   max-height: fit-content;
 }
 
@@ -61,8 +61,8 @@ img{
 
 .sidebar-brand {
   color: var(--accent);
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 500;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -70,9 +70,11 @@ img{
 .sidebar-link {
   text-decoration: none;
   color: var(--text-on-dark);
-  padding: 12px 15px;
   transition: 0.2s;
-  font-weight: 500;
+  font-weight: 400;
+  padding: 5px;
+  margin: auto 5px;
+  font-size: 15px;
 }
 
 .sidebar-link:hover {
@@ -81,8 +83,8 @@ img{
 }
 
 .sidebar-link.active {
-  background-color: var(--primary-light);
   color: var(--accent);
+  border-bottom: 1px solid var(--primary-light);
 }
 
 /* Dashboard */
@@ -241,6 +243,7 @@ img{
   .sidebar-brand {
     font-size: 24px;
     margin-bottom: 0;
+    font-weight: bold;
   }
 
   .sidebar-nav {
@@ -252,7 +255,15 @@ img{
     flex: none;
     text-align: left;
     min-width: auto;
+    padding: 12px 15px;
+    font-weight: 500;
+    font-size: 18px;
   }
+  .sidebar-link.active {
+  background-color: var(--primary-light);
+  color: var(--accent);
+  border: none;
+}
 
   .form-card {
     padding: 30px;

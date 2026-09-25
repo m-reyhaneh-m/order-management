@@ -12,7 +12,7 @@ export default function App() {
       <Navbar />
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="order-management/" element={<Dashboard />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/orders/:id" element={<OrderDetails />} />
           <Route path="/orders/new" element={<AddOrder />} />
