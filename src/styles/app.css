@@ -76,12 +76,9 @@ img {
   margin: auto 5px;
   font-size: 15px;
 }
-
 .sidebar-link:hover {
-  color: var(--accent);
-  background-color: var(--primary);
+  color: var(--text-light);
 }
-
 .sidebar-link.active {
   color: var(--accent);
   border-bottom: 1px solid var(--primary-light);
@@ -222,7 +219,7 @@ img {
 }
 
 /* Desktop */
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .app-layout {
     display: flex;
   }
@@ -263,6 +260,10 @@ img {
   background-color: var(--primary-light);
   color: var(--accent);
   border: none;
+}
+.sidebar-link:hover {
+  color: var(--accent);
+  background-color: var(--primary);
 }
 
   .form-card {
